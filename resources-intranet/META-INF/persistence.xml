@@ -1,0 +1,14 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence" version="1.0">
+   <persistence-unit name="StatisticsEnginePersist">
+      <jta-data-source>java:/StatisticsDS</jta-data-source>
+      <provider>org.hibernate.ejb.HibernatePersistence</provider>
+	  <class>com.eim.utility.statistics.model.ComputedStatistics</class>	
+	  <class>com.eim.utility.statistics.model.BenchmarkRelatedStatistics</class>
+      <properties>
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/> 
+		 <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+		 <property name="hibernate.show_sql" value="false"/> 
+      </properties>
+   </persistence-unit>
+</persistence>

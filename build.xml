@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<project name="IS - Statistics Engine" basedir="." default="build">
+	
+	<property name="app-server-war-name" value="statistics"/>
+	<property name="app-server-target" value="c:/DEV/Servers/apache-tomcat-7.0.21/webapps"/>
+	<property name="jboss-target" value="c:/DEV/jboss-4.2.3.GA/server/IS/deploy"/>
+
+	<property name="third-party-path" value="c:/DEV/Sources/Libraries/ThirdParty/statistics"/>
+
+	<property name="path-to-ui-home" value="${basedir}/../flex-console"/>
+	<property name="path-to-ab-home" value="${basedir}/../../flex4/ApplicationBuilder"/>
+		
+	<path id="build.classpath">
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/hibernate" includes="*.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/JBoss-4.2.3" includes="log4j.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/apache/commons" includes="commons-math-2.2.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/dst" includes="*.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/quartz-2.1.0" includes="*.jar"/>
+		<fileset dir="${jboss-target}/../lib" includes="IS-Util.jar"/>
+	</path>
+
+	<path id="build.classpath.ejb3">
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/EJB3" includes="*.jar" excludes="hibernate3.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/hibernate" includes="*.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/JBoss-4.2.3" includes="log4j.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/apache/commons" includes="commons-math-2.2.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/dst" includes="*.jar"/>
+		<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/quartz-2.1.0" includes="*.jar"/>
+		<fileset dir="${jboss-target}/../lib" includes="IS-Util.jar"/>
+	</path>
+	
+	<target name="build">
+		<delete dir="${basedir}/build" failonerror="false"/>
+		<mkdir dir="${basedir}/build/bin"/>
+		<mkdir dir="${basedir}/build/src"/>
+		<copy todir="${basedir}/build/src">
+			<fileset dir="${basedir}/src" excludes="**\*Bean*.java"/>
+		</copy>
+		
+		<javac classpathref="build.classpath"
+			memorymaximumsize="512m"
+			debug="true"
+			deprecation="yes"
+			failonerror="yes"
+			fork="yes"
+			source="1.6"
+			target="1.6"
+			optimize="yes"
+			destdir="${basedir}/build/bin">
+			<src location="${basedir}/build/src" />
+		</javac>
+		<copy todir="${basedir}/build/bin" overwrite="true">
+			<fileset dir="${basedir}/build/src" excludes="**/*.java"/>
+		</copy>
+		<jar destfile="${basedir}/build/IS-StatisticsEngine.jar">
+			<fileset dir="${basedir}/build/bin"/>
+		    <manifest>
+		      <attribute name="Built-By" value="${user.name}"/>
+		      <attribute name="Implementation-Vendor" value="E.I.M. S.A."/>
+		      <attribute name="Implementation-Title" value="IS Statistics Engine"/>
+		      <attribute name="Implementation-Comments" value="Library generation"/>
+		    </manifest>
+		</jar>
+	</target>
+
+	<target name="install" depends="build">
+		<mkdir dir="${app-server-target}/${app-server-war-name}"/>
+		<copy todir="${app-server-target}/${app-server-war-name}">
+			<fileset dir="${basedir}/resources" includes="**/*.*"/>
+		</copy>
+		<copy todir="${app-server-target}/${app-server-war-name}/WEB-INF/lib">
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/hibernate" includes="*.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/waffle" includes="*.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/oracle" includes="*.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/JBoss-4.2.3" includes="log4j.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/apache/commons" includes="commons-math-2.2.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/apache/tiles-2.2.2" includes="*.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/dst" includes="*.jar"/>
+			<fileset dir="${basedir}/../../../Intranet/Current/thirdparty/quartz-2.1.0" includes="*.jar"/>
+			<fileset dir="${jboss-target}/../lib" includes="IS-Util.jar"/>
+			<fileset dir="${basedir}/build" includes="IS-StatisticsEngine.jar"/>
+		</copy>
+	</target>
+	
+	<target name="build-ejb3">
+		<delete dir="${basedir}/build" failonerror="false"/>
+		<mkdir dir="${basedir}/build/bin"/>
+		<javac classpathref="build.classpath.ejb3"
+			memorymaximumsize="512m"
+			debug="true"
+			deprecation="yes"
+			failonerror="yes"
+			fork="yes"
+			source="1.6"
+			target="1.6"
+			optimize="yes"
+			destdir="${basedir}/build/bin">
+			<src location="src" />
+		</javac>
+		<copy todir="${basedir}/build/bin" overwrite="true">
+			<fileset dir="${basedir}/src" excludes="**/*.java"/>
+		</copy>
+		<jar destfile="${basedir}/build/IS-StatisticsEngine.jar">
+			<fileset dir="${basedir}/build/bin"/>
+		    <manifest>
+		      <attribute name="Built-By" value="${user.name}"/>
+		      <attribute name="Implementation-Vendor" value="E.I.M. S.A."/>
+		      <attribute name="Implementation-Title" value="IS Statistics Engine"/>
+		      <attribute name="Implementation-Comments" value="Library generation"/>
+		    </manifest>
+		</jar>
+	</target>
+	
+	<target name="make-intranet-jar" depends="build-ejb3">
+		<copy todir="${basedir}/build/bin" overwrite="true">
+			<fileset dir="${basedir}/resources-intranet" includes="**/*.*"/>
+		</copy>
+		<jar destfile="${third-party-path}/IS-StatisticsEngine.jar">
+			<fileset dir="${basedir}/build/bin"/>
+		    <manifest>
+		      <attribute name="Built-By" value="${user.name}"/>
+		      <attribute name="Implementation-Vendor" value="E.I.M. S.A."/>
+		      <attribute name="Implementation-Title" value="IS Statistics Engine"/>
+		      <attribute name="Implementation-Comments" value="Library generation"/>
+		    </manifest>
+		</jar>
+	</target>
+	
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+                        http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<!-- general information about this web application -->
+	<display-name>Statistics Front End</display-name>
+	<description>E.I.M. S.A. Statistics Engine Front End</description>
+	<servlet>
+		<servlet-name>tiles</servlet-name>
+		<servlet-class>org.apache.tiles.web.startup.simple.SimpleTilesInitializerServlet</servlet-class>
+    	<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+   <context-param>
+         <param-name>quartz:config-file</param-name>
+         <param-value>/quartz.properties</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:shutdown-on-unload</param-name>
+         <param-value>true</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:wait-on-shutdown</param-name>
+         <param-value>false</param-value>
+     </context-param>
+     <context-param>
+         <param-name>quartz:start-scheduler-on-load</param-name>
+         <param-value>true</param-value>
+     </context-param>
+     <listener>
+         <listener-class>
+             org.quartz.ee.servlet.QuartzInitializerListener
+         </listener-class>
+     </listener>
+
+
+	<!-- SSO & NTLM filter -->
+	<filter>
+		<filter-name>SecurityFilter</filter-name>
+		<filter-class>waffle.servlet.NegotiateSecurityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SecurityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- default content for monitoring application -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

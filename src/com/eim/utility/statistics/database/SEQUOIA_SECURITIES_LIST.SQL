@@ -1,0 +1,1 @@
+SELECT security_id FROM security_security WHERE security_quote_type<>'YIELD'

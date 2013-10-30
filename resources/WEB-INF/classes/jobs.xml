@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_1_8.xsd"
+    version="1.8">
+    <pre-processing-commands>
+    	<delete-jobs-in-group>*</delete-jobs-in-group>
+    	<delete-triggers-in-group>*</delete-triggers-in-group>
+    </pre-processing-commands>
+    <processing-directives>
+    	<overwrite-existing-data>true</overwrite-existing-data>
+    	<ignore-duplicates>false</ignore-duplicates>
+    </processing-directives>
+    <schedule>
+    	<job>
+    		<name>SimpleStatisticsJob</name>
+    		<description>Unique job that handles statistics generation for a given index.</description>
+    		<job-class>com.eim.utility.statistics.scheduling.SimpleStatisticsJob</job-class>
+    	</job>
+    	<trigger>
+    		<cron>
+    			<name>IndicesCRON</name>
+    			<job-name>SimpleStatisticsJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>ENTITY</key>
+	    				<value>INDEX</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 22 ? * *</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>TopLevelFundsCRON</name>
+    			<job-name>SimpleStatisticsJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>ENTITY</key>
+	    				<value>TOP_LEVEL_FUND</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 8 ? * *</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>ProductCRON</name>
+    			<job-name>SimpleStatisticsJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>ENTITY</key>
+	    				<value>PRODUCT</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 9 ? * *</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>PortfolioCRON</name>
+    			<job-name>SimpleStatisticsJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>ENTITY</key>
+	    				<value>PORTFOLIO</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 10 ? * *</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>ChildFundCRON</name>
+    			<job-name>SimpleStatisticsJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>ENTITY</key>
+	    				<value>CHILD_FUND</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 16 ? * *</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>OtherFundsCRON</name>
+    			<job-name>SimpleStatisticsJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>ENTITY</key>
+	    				<value>OTHER_FUNDS</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 1 ? * *</cron-expression>
+    		</cron>
+    	</trigger>
+    </schedule>
+    <schedule>
+    	<job>
+    		<name>ContributionJob</name>
+    		<description>Job that handles contributions generation.</description>
+    		<job-class>com.eim.utility.contribution.scheduling.ContributionJob</job-class>
+    	</job>
+    	<trigger>
+    		<cron>
+    			<name>Last12MonthsPortfoliosMorningCRON</name>
+    			<job-name>ContributionJob</job-name>
+    			<cron-expression>0 20 7 * * ?</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>Last12MonthsPortfoliosMiddayCRON</name>
+    			<job-name>ContributionJob</job-name>
+    			<cron-expression>0 20 12 * * ?</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>Last12MonthsPortfoliosEveningCRON</name>
+    			<job-name>ContributionJob</job-name>
+    			<cron-expression>0 20 20 * * ?</cron-expression>
+    		</cron>
+    	</trigger>
+    	<!--
+    	<trigger>
+    		<cron>
+    			<name>TuesdayPortfoliosCRON</name>
+    			<job-name>ContributionJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>day</key>
+	    				<value>Tuesday</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 21 ? * MON</cron-expression>
+    		</cron>
+    	</trigger>
+    	<trigger>
+    		<cron>
+    			<name>WednesdayPortfoliosCRON</name>
+    			<job-name>ContributionJob</job-name>
+	    		<job-data-map>
+	    			<entry>
+	    				<key>day</key>
+	    				<value>Wednesday</value>
+	    			</entry>
+	    		</job-data-map>
+    			<cron-expression>0 0 21 ? * TUE</cron-expression>
+    		</cron>
+    	</trigger>
+    	 -->
+    </schedule>
+</job-scheduling-data>
