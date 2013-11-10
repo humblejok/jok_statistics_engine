@@ -207,8 +207,8 @@ public class StatisticsValueComputer {
 	public static void computePreviousYearToDate(ComputedStatistics statistic, TimeSeries workingSeries, TimeSeries workingMonthlySeries) {
 		if (workingMonthlySeries.getDates().size()>=12) {
 			Date applicationDate = statistic.getApplicationDate();
-			Double [] year_n = new Double[] {Double.NaN,Double.NaN,Double.NaN};
-			for (int i=1;i<=3;i++) {
+			Double [] year_n = new Double[] {Double.NaN,Double.NaN,Double.NaN,Double.NaN,Double.NaN,Double.NaN,Double.NaN,Double.NaN,Double.NaN};
+			for (int i=1;i<=9;i++) {
 				Date yearStart = null;
 				Date yearEnd = applicationDate;
 				for (int j=0;j<i;j++) {
@@ -225,6 +225,13 @@ public class StatisticsValueComputer {
 			statistic.setYearToDateY_1(year_n[0]);
 			statistic.setYearToDateY_2(year_n[1]);
 			statistic.setYearToDateY_3(year_n[2]);
+			statistic.setYearToDateY_4(year_n[3]);
+			statistic.setYearToDateY_5(year_n[4]);
+			statistic.setYearToDateY_6(year_n[5]);
+			statistic.setYearToDateY_7(year_n[6]);
+			statistic.setYearToDateY_8(year_n[7]);
+			statistic.setYearToDateY_9(year_n[8]);
+			
 		}
 	}
 	

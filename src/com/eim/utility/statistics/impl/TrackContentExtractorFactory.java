@@ -19,6 +19,8 @@ public class TrackContentExtractorFactory {
 		switch (type) {
 		case PORTFOLIO:
 			return new SequoiaPortfolioTrackContentExtractor();
+		case OTHER_FUND:
+			return new SequoiaSecurityRepositoryTrackContentExtractor();
 		default:
 			return new SequoiaSecurityTrackContentExtractor();
 		}

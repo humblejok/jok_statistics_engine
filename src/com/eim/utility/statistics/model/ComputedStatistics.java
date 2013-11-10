@@ -141,6 +141,12 @@ public class ComputedStatistics implements Serializable, IStatistics {
 	private Double yearToDateY_1;
 	private Double yearToDateY_2;
 	private Double yearToDateY_3;
+	private Double yearToDateY_4;
+	private Double yearToDateY_5;
+	private Double yearToDateY_6;
+	private Double yearToDateY_7;
+	private Double yearToDateY_8;
+	private Double yearToDateY_9;
 	
 	private Double monthToDate;
 	private Double quarterToDate;
@@ -608,6 +614,42 @@ public class ComputedStatistics implements Serializable, IStatistics {
 			return ;
 		}
 		this.yearToDateY_3 = yearToDateY_3;
+	}
+	public Double getYearToDateY_4() {
+		return yearToDateY_4;
+	}
+	public void setYearToDateY_4(Double yearToDateY_4) {
+		this.yearToDateY_4 = yearToDateY_4;
+	}
+	public Double getYearToDateY_5() {
+		return yearToDateY_5;
+	}
+	public void setYearToDateY_5(Double yearToDateY_5) {
+		this.yearToDateY_5 = yearToDateY_5;
+	}
+	public Double getYearToDateY_6() {
+		return yearToDateY_6;
+	}
+	public void setYearToDateY_6(Double yearToDateY_6) {
+		this.yearToDateY_6 = yearToDateY_6;
+	}
+	public Double getYearToDateY_7() {
+		return yearToDateY_7;
+	}
+	public void setYearToDateY_7(Double yearToDateY_7) {
+		this.yearToDateY_7 = yearToDateY_7;
+	}
+	public Double getYearToDateY_8() {
+		return yearToDateY_8;
+	}
+	public void setYearToDateY_8(Double yearToDateY_8) {
+		this.yearToDateY_8 = yearToDateY_8;
+	}
+	public Double getYearToDateY_9() {
+		return yearToDateY_9;
+	}
+	public void setYearToDateY_9(Double yearToDateY_9) {
+		this.yearToDateY_9 = yearToDateY_9;
 	}
 	public Double getMonthToDate() {
 		return monthToDate;

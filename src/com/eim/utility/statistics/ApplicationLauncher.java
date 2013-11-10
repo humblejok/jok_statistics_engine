@@ -18,7 +18,7 @@ import com.eim.utility.common.model.ComputationFrequency;
 import com.eim.utility.common.model.EntityType;
 import com.eim.utility.common.utility.HibernateUtil;
 import com.eim.utility.statistics.runners.AbstractStatisticsRunner;
-import com.eim.utility.statistics.runners.SequoiaSecurityStatisticsRunner;
+import com.eim.utility.statistics.runners.SequoiaRepositorySecurityStatisticsRunner;
 import com.eim.utility.statistics.runners.UserDefinedWorkingSetStatisticsRunner;
 
 public class ApplicationLauncher {
@@ -262,16 +262,23 @@ public class ApplicationLauncher {
 	
 	public static void main(String argv[]) {
 		ArrayList<String> ids = new ArrayList<String>();
-		ids.add("203"); // MODEL EARTH
-		ids.add("211"); // MODEL EARTH EUR
-		ids.add("205"); // MODEL WATER
-		ids.add("214"); // MODEL WATER EUR
-		ids.add("206"); // MODEL WIND
-		ids.add("210"); // MODEL WIND EUR
-		ids.add("207"); // MODEL FIRE
-		ids.add("209"); // MODEL FIRE EUR
+//		ids.add("203"); // MODEL EARTH
+//		ids.add("211"); // MODEL EARTH EUR
+//		ids.add("205"); // MODEL WATER
+//		ids.add("214"); // MODEL WATER EUR
+//		ids.add("206"); // MODEL WIND
+//		ids.add("210"); // MODEL WIND EUR
+//		ids.add("207"); // MODEL FIRE
+//		ids.add("209"); // MODEL FIRE EUR
 		
-		
+		ids.add("1124");
+		ids.add("1666");
+		ids.add("1113");
+		ids.add("1667");
+		ids.add("1288");
+		ids.add("1100");
+		ids.add("1099");
+		ids.add("1050");
 		ids.add("1130");
 		ids.add("1131");
 		ids.add("1144");
@@ -309,6 +316,7 @@ public class ApplicationLauncher {
 		ids.add("1253");
 		ids.add("1256");
 		ids.add("1260");
+		ids.add("1278");
 		ids.add("1345");
 		ids.add("1346");
 		ids.add("1347");
@@ -332,16 +340,107 @@ public class ApplicationLauncher {
 		ids.add("1652");
 		ids.add("1653");
 		ids.add("1655");
+		ids.add("1099");
 		ids.add("795");
 		ids.add("857");
 		ids.add("1103");
 		ids.add("1106");
 		ids.add("1664");
 		ids.add("1665");
+		ids.add("1278");
+		ids.add("1409");
+		ids.add("1384");
+		ids.add("1280");
+		ids.add("1298");
+		ids.add("1279");
+		ids.add("1392");
+		ids.add("1394");
+		ids.add("1268");
+		ids.add("1668");
+		ids.add("1226");
+		ids.add("1270");
+		ids.add("1269");
+		ids.add("1418");
+		ids.add("1390");
+		ids.add("1427");
+		ids.add("1421");
+		
+		ids.add("1684");
+		ids.add("1100");
+		ids.add("1677");
+		ids.add("1693");
+		ids.add("1688");
+		ids.add("1685");
+		ids.add("1418");
+		ids.add("1367");
+		ids.add("1226");
+		ids.add("1653");
+		ids.add("1099");
+		ids.add("1678");
+		ids.add("1268");
+		ids.add("1366");
+		ids.add("1682");
+		
+		
+		ids.add("1422");
+		ids.add("1391");
+		ids.add("1419");
+		ids.add("1712");
+		ids.add("1586");
+		ids.add("1178");
+		ids.add("1732");
+		ids.add("1711");
+		ids.add("1721");
+		ids.add("1417");
+		ids.add("1710");
+		ids.add("1713");
+		ids.add("1270");
+		ids.add("1421");
+		ids.add("1425");
+		ids.add("1727");
+		ids.add("1415");
+		ids.add("1704");
+		ids.add("1723");
+		ids.add("1724");
+		ids.add("1716");
+		ids.add("1717");
+		ids.add("1718");
+		ids.add("1226");
+		ids.add("1418");
+		ids.add("1707");
+		ids.add("1730");
+		ids.add("1706");
+		ids.add("1728");
+		ids.add("1688");
+		ids.add("1668");
+		ids.add("1708");
+		ids.add("1720");
+		ids.add("1726");
+		ids.add("937");
+		ids.add("1725");
+		ids.add("1268");
+		ids.add("1715");
+		ids.add("1731");
+		ids.add("1719");
+		ids.add("1271");
+		ids.add("1269");
+		ids.add("1424");
+		ids.add("1705");
+		ids.add("1734");
+		ids.add("1703");
+		ids.add("1414");
+		ids.add("1733");
+		ids.add("1709");
+		ids.add("1722");
+		ids.add("1729");
+		ids.add("1714");
+		ids.add("1390");
 
+		
 		AbstractStatisticsRunner runner = null;
-		runner = new UserDefinedWorkingSetStatisticsRunner(EntityType.PORTFOLIO,ComputationFrequency.MONTHLY, ids);
+		runner = new UserDefinedWorkingSetStatisticsRunner(EntityType.TOP_LEVEL_FUND,ComputationFrequency.MONTHLY, ids);
 		//runner = new SequoiaSecurityStatisticsRunner(ComputationFrequency.MONTHLY);
+		runner = new SequoiaRepositorySecurityStatisticsRunner(ComputationFrequency.MONTHLY);
 		runner.compute();		
 	}
 }
