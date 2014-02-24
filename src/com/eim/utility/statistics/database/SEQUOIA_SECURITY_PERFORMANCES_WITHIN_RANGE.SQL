@@ -6,4 +6,6 @@ SELECT perf_track.quote_date,
 FROM security_securityperfs perf_track
 WHERE CAST(perf_track.security_id as varchar) = ?
 AND perf_track.quote_date BETWEEN ? AND ?
+AND perf_track.quote_frequency = 'MONTHLY'
+AND perf_track.quote_source = 'ADMINISTRATOR'
 ORDER BY perf_track.quote_date

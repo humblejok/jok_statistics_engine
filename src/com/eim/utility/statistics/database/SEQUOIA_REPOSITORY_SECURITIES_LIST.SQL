@@ -1,1 +1,1 @@
-SELECT distinct alias FROM security_trackrawdata WHERE type='PERF'
+SELECT distinct alias FROM security_trackrawdata WHERE type='MPERF' and alias='BERNARDOS FUND'

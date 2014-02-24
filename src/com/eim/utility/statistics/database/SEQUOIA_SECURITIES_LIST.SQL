@@ -1,1 +1,1 @@
-SELECT distinct alias FROM security_trackrawdata WHERE type='PERF'
+SELECT distinct security_id FROM security_security

@@ -19,7 +19,7 @@ public class SequoiaRepositorySecurityStatisticsRunner extends AbstractStatistic
 
 	public SequoiaRepositorySecurityStatisticsRunner(ComputationFrequency frequency) {
 		this.entityType = EntityType.OTHER_FUND;
-		this.executeBenchmarksRelatedStatistics = false;
+		this.executeBenchmarksRelatedStatistics = true;
 		this.executeNonBenchmarksRelatedStatistics = true;
 		this.frequency = frequency;
 		this.allowNonEOPEstimated = true;

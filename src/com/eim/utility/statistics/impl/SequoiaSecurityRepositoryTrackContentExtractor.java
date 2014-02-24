@@ -34,7 +34,7 @@ public class SequoiaSecurityRepositoryTrackContentExtractor extends TrackContent
 	
 	@Override
 	public String getBenchmarkQueryName() {
-		return "SEQUOIA_SECURITY_BENCHMARKS.SQL";
+		return "SEQUOIA_REPOSITORY_SECURITY_BENCHMARKS.SQL";
 	}
 
 	@Override

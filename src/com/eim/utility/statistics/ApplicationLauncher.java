@@ -19,6 +19,7 @@ import com.eim.utility.common.model.EntityType;
 import com.eim.utility.common.utility.HibernateUtil;
 import com.eim.utility.statistics.runners.AbstractStatisticsRunner;
 import com.eim.utility.statistics.runners.SequoiaRepositorySecurityStatisticsRunner;
+import com.eim.utility.statistics.runners.SequoiaSecurityStatisticsRunner;
 import com.eim.utility.statistics.runners.UserDefinedWorkingSetStatisticsRunner;
 
 public class ApplicationLauncher {
@@ -438,7 +439,7 @@ public class ApplicationLauncher {
 
 		
 		AbstractStatisticsRunner runner = null;
-		runner = new UserDefinedWorkingSetStatisticsRunner(EntityType.TOP_LEVEL_FUND,ComputationFrequency.MONTHLY, ids);
+		//runner = new UserDefinedWorkingSetStatisticsRunner(EntityType.TOP_LEVEL_FUND,ComputationFrequency.MONTHLY, ids);
 		//runner = new SequoiaSecurityStatisticsRunner(ComputationFrequency.MONTHLY);
 		runner = new SequoiaRepositorySecurityStatisticsRunner(ComputationFrequency.MONTHLY);
 		runner.compute();		

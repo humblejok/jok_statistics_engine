@@ -22,7 +22,7 @@ public class TrackContentExtractorFactory {
 		case OTHER_FUND:
 			return new SequoiaSecurityRepositoryTrackContentExtractor();
 		default:
-			return new SequoiaSecurityTrackContentExtractor();
+			return new SequoiaSecurityRepositoryTrackContentExtractor();
 		}
 	}
 	
